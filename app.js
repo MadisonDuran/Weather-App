@@ -1,12 +1,7 @@
-console.log('Starting')
+const request = require('request')
 
-setTimeout(() => {
-    console.log('2 Second Timer')
-}, 2000)
+const url = 'https://api.weatherstack.com/current?access_key=0ec0cc9c5063651eb9c24c6930fbd8d2&query=37.8267,122.4233units=f'
 
-setTimeout(() => {
-    console.log('0 Second Timer')
-}, 0)
-
-
-console.log('Stopping')
+request({ url: url, json: true }, (error, response) => {
+   console.log(response.body.current.weather_descriptions[0]  + ". It is currently " + response.body.currently + ' degrees out. There is a ' + response.body.currently.precipProbability + '% chance of rain.')
+})
