@@ -1,3 +1,6 @@
+const request = require('request')
+const geocode = require('./utils/geocode')
+
 const geocode = (address, callback) => {
     const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1ijo1W5kcmV3bWhZDEiLCJhIjoiY2pzbml2OG9jMGN2MTQ0cGd3bVheTFUay'
 
@@ -15,3 +18,5 @@ const geocode = (address, callback) => {
         }
     })
 }
+
+module.exports = geocode

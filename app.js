@@ -30,7 +30,7 @@
    //if(error) {
        //console.log('Unable to connect to location services!')
    //} else if (response.body.features.length === 0) {
-       console.log('Unable to find location. Try another search')
+       //console.log('Unable to find location. Try another search')
    //} else { 
        //const latitude = response.body.features[0].center[1]
        //const longitude = response.body.features[0].center[0]
@@ -55,25 +55,40 @@
   //console.log(forcastData)
 //})
 //})
-
+const path = require('path')
 const express = require('express')
 
+console.log(__dirname)
+console.log(path.join(__dirname, '../public'))
+
 const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public')
+
+app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
-    res.send('Hello express!')
+    res.send('<h1>Weather</h1>')
 })
 
 app.get('/help', (req, res) => {
-   res.send('Help page')
+   res.send([{
+      name: 'Madison'   
+  }, {
+   name: 'Sarah'
+}])
 })
 
+
+
 app.get('/about', (req, res) => {
-   res.send('About')
+   res.send('<h1>About</h1>')
 })
 
 app.get('/weather', (req, res) => {
-   res.send('Your weather')
+   res.send({
+      forcast: 'It is snowing', 
+      location: 'Philadelphia'
+   })
 })
 
 // app.com
